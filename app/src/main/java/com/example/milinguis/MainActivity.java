@@ -103,12 +103,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 socket = new Socket(dstAddress, dstPort);
                 dataInputStream = new DataInputStream(socket.getInputStream());
+                String folderName = dataInputStream.readUTF();
                 int songQuantity = dataInputStream.readInt();
 
                 myLog("Se descargarán " + songQuantity + " canciones.");
 
                 for(int i=0; i<songQuantity; i++)
-                    downloadFile();
+                    downloadFile(folderName);
 
                 MainActivity.this.runOnUiThread(new Runnable() {
 
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        private void downloadFile() throws IOException {
+        private void downloadFile(String folderName) throws IOException {
             String name = dataInputStream.readUTF();
             long length = dataInputStream.readLong();
 
@@ -153,7 +154,13 @@ public class MainActivity extends AppCompatActivity {
             Log.i("length", ""+length);
 
             final String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
-            File file = new File( path, name );
+            File folder = new File( path + File.separator + folderName );
+
+            if(!folder.exists())
+                folder.mkdirs();
+
+            File file = new File( folder, name );
+
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             byte[] bytes = new byte[ (int) length ];
             int progress = 0;
