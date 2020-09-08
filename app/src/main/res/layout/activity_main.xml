@@ -6,20 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:keepScreenOn="true"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
+        android:layout_marginLeft="30sp"
         android:layout_marginTop="50sp"
         android:text="Ingrese la IP:"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50sp"
         android:layout_marginTop="10sp"
@@ -29,11 +30,54 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="120sp"
+        android:layout_marginLeft="200sp"
         android:layout_marginTop="10sp"
         android:onClick="connectToSocket"
-        android:text="Enviar" />
+        android:text="Conectar" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="50sp"
+        android:text="Progreso:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/progressBarLabelUp"
+        android:layout_width="250dp"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/progressBar"
+        android:layout_below="@+id/progressBar"
+        android:layout_marginLeft="50sp"
+        android:text="Esperando conexión."/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="0sp"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:indeterminate="false"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="200dp" />
+
+    <TextView
+        android:id="@+id/progressBarLabelDown"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/progressBar"
+        android:layout_below="@+id/progressBar"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="0sp"
+        android:text=""/>
 
 </LinearLayout>
